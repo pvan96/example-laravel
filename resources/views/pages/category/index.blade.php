@@ -21,8 +21,8 @@
                             <td>{{ $category['id'] }}</td>
                             <td>{{ $category['name'] }}</td>
                             <td>
-                            <a href="index.php?controller=Brand&action=edit&id=<?= $category['id'] ?>"><button class="btn btn-warning btn-sm">Edit</button></a>
-                            <a href="index.php?controller=Brand&action=delete&id=<?= $category['id'] ?>" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
+                            <a href="index.php?controller=Brand&action=edit&id={{ $category['id'] }}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                            <a href="index.php?controller=Brand&action=delete&id={{ $category['id'] }}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
                             </td>
                         </tr>
                     </tbody>
