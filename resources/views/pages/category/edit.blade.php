@@ -1,21 +1,21 @@
-<?php
-    $this->layout('layouts/app');
-    $this->set('title', 'Category-Edit');
-?>
+@extends('layouts.app')
+@section('title', 'Category')
+@section('content')
 <div class="container-fluid">
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Edit Category</h3>
+            <h3 class="card-title">Edit</h3>
         </div>
-        <form action="index.php?controller=Category&action=update" method="POST">
-            <input type='hidden' name='id' value="<?= $category['id'] ?>"/>
+        <form action="{{route('categories.update', $category['id'])}}" method="POST">
+            @csrf
+            <input type='hidden' name='id' value="{{$category['id']}}"/>
             <div class="card-body">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" id="name" name='name' placeholder="Enter name" value="<?= $category['name'] ?>" />
-                    <?php if (!empty($errors['name'])) : ?>
-                        <span style="color: red;"><?= $errors['name'] ?></span>
-                    <?php endif; ?>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name='name' placeholder="Enter name" value="{{ old('name', $category['name']) }}" />
+                    @error('name')
+                        <span class="error invalid-feedback" role="alert">{{ $errors->first('name') }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="card-footer">
@@ -24,3 +24,4 @@
         </form>
     </div>
 </div>
+@endsection

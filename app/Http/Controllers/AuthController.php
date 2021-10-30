@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function showLoginView()
     {
         if (Auth::check()) {
-            return redirect()->route('top');
+            return redirect()->route('categories.list');
         }
         return view('pages.user.login');
     }
@@ -22,7 +22,13 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->route('top');
+            return redirect()->route('categories.list');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('showLoginView');
     }
 }

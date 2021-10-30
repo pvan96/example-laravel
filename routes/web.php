@@ -15,14 +15,22 @@ use App\Http\Controllers\AuthController;
 
 Route::get('login', 'AuthController@showLoginView')->name('showLoginView');
 Route::get('/', 'AuthController@showLoginView')->name('showLoginView');
-// Route::get('hihihi/{mi}/{you?}', function($mi, $you=null){
-//     echo ('hello '. $mi . ' '. $you);
-// });
-
-Route::get('categories', 'CategoryController@index')->name('listCategory');
-
 Route::post('login', 'AuthController@login')->name('login');
+Route::get('logout', 'AuthController@logout')->name('logout');
 
-Route::get('top', function (){
- echo ('hihi');
+Route::get('top', function () {
+    echo ('hihi');
 })->name('top');
+
+Route::group([
+    'prefix' => 'categories',
+    'as' => 'categories.',
+    'middleware' => ['auth:web']
+], function () {
+    Route::get('/', 'CategoryController@index')->name('list');
+    Route::get('create', 'CategoryController@viewCreate')->name('viewCreate');
+    Route::post('create', 'CategoryController@create')->name('create');
+    Route::get('edit/{id}', 'CategoryController@viewEdit')->name('viewEdit');
+    Route::post('edit/{id}', 'CategoryController@update')->name('update');
+    Route::get('delete/{id}', 'CategoryController@delete')->name('delete');
+});

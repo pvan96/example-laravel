@@ -32,7 +32,7 @@
                 </div>
               </div>
             </a> 
-            <a href="index.php?controller=Auth&action=logout" class="dropdown-item">
+            <a href="{{route('logout')}}" class="dropdown-item">
               <div class="media">
                 <div class="media-body">                 
                   <span class="float-right text-sm"><i class="fas fa-sign-out-alt"></i></span>

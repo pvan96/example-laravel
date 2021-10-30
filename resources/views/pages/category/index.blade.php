@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Categories')
 @section('content')
+
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <a href="#" ><button class="btn btn-primary btn-sm">Add</button></a>
+            <a href="{{route('categories.viewCreate')}}" ><button class="btn btn-primary btn-sm">Add</button></a>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -21,8 +22,8 @@
                             <td>{{ $category['id'] }}</td>
                             <td>{{ $category['name'] }}</td>
                             <td>
-                            <a href=""><button class="btn btn-warning btn-sm">Edit</button></a>
-                            <a href="" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
+                            <a href="{{route('categories.viewEdit', $category['id'])}}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                            <a href="{{route('categories.delete', $category['id'])}}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
                             </td>
                         </tr>
                     </tbody>
