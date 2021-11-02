@@ -37,4 +37,9 @@ class CategoryRepository
         // update
         // return Category::query()->where('id', $id)->update($data);
     }
+
+    public function delete($id)
+    {
+        return Category::destroy($id);
+    }
 }

@@ -1,11 +1,10 @@
-<?php
-    $this->layout('layouts/app');
-    $this->set('title', 'Brand');
-?>
+@extends('layouts.app')
+@section('title', 'Brand')
+@section('content')
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <a href="index.php?controller=Brand&action=add" ><button class="btn btn-primary btn-sm">Add</button></a>
+            <a href="{{route('brands.viewCreate')}}" ><button class="btn btn-primary btn-sm">Add</button></a>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -17,19 +16,19 @@
                     <th style="width: 20%">Action</th>
                 </tr>
                 </thead>
-                <?php foreach ($brands as $brand) { ?>
+                @foreach ($brands as $brand)
                 <tbody>
                     <tr>
-                        <td><?= $brand['id'] ?></td>
-                        <td><?= $brand['name'] ?></td>
-                        <td><?= $brand['image'] ?></td>
+                        <td>{{$brand['id']}}</td>
+                        <td>{{$brand['name']}}</td>
+                        <td>{{$brand['image']}}</td>
                         <td>
-                        <a href="index.php?controller=Brand&action=edit&id=<?= $brand['id'] ?>"><button class="btn btn-warning btn-sm">Edit</button></a>
-                        <a href="index.php?controller=Brand&action=delete&id=<?= $brand['id'] ?>" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
+                        <a href="index.php?controller=Brand&action=edit&id={{ $brand['id']}}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                        <a href="index.php?controller=Brand&action=delete&id={{$brand['id']}}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
                         </td>
                     </tr>
                 </tbody>
-                <?php } ?>
+                @endforeach
             </table>
         </div>
         <div class="card-footer clearfix">
@@ -43,4 +42,4 @@
         </div>
     </div>
 </div>
- 
+@endsection

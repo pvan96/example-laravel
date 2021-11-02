@@ -1,27 +1,21 @@
-<?php
-    $this->layout('layouts/app');
-    $this->set('title', 'Brand-Add');
-?>
+@extends('layouts.app')
+@section('title', 'Brand')
+@section('content')
 <div class="container-fluid">
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Create brand</h3>
         </div>
-        <form action="index.php?controller=Brand&action=create" method="POST" enctype="multipart/form-data">
+        <form action="{{route('brands.create')}}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="card-body">
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" class="form-control" id="name" name='name' placeholder="Enter name"/>
-                    <?php if (!empty($errors['name'])) : ?>
-                        <span style="color: red;"><?= $errors['name'] ?></span>
-                    <?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label>Image</label></br>
+                    <label>Image</label>
                     <input type="file" name='image' accept="image/*"/>
-                    <?php if (!empty($errors['image'])) : ?>
-                        <span style="color: red;"><?= $errors['image'] ?></span>
-                    <?php endif; ?>
                 </div>
             </div>
             <div class="card-footer">
@@ -30,3 +24,4 @@
         </form>
     </div>
 </div>
+@endsection

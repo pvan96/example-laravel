@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Repositories\CategoryRepository;
-use Illuminate\View\View;
-use App\Models\Category;
+
 
 class CategoryController extends Controller
 {
@@ -59,7 +58,8 @@ class CategoryController extends Controller
 
     public function delete(Request $request)
     {
-        Category::destroy($request->id);
+        $id = $request->id;
+        $this->categoryRepository->delete($id);
         return redirect()->route('categories.list');
     }
 }

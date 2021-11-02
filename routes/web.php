@@ -18,9 +18,9 @@ Route::get('/', 'AuthController@showLoginView')->name('showLoginView');
 Route::post('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 
-Route::get('top', function () {
-    echo ('hihi');
-})->name('top');
+// Route::get('top', function () {
+//     echo ('hihi');
+// })->name('top');
 
 Route::group([
     'prefix' => 'categories',
@@ -33,4 +33,14 @@ Route::group([
     Route::get('edit/{id}', 'CategoryController@viewEdit')->name('viewEdit');
     Route::post('edit/{id}', 'CategoryController@update')->name('update');
     Route::get('delete/{id}', 'CategoryController@delete')->name('delete');
+});
+
+Route::group([
+    'prefix' => 'brands',
+    'as' => 'brands.',
+    'middleware' => ['auth:web']
+],function () {
+    Route::get('/', 'BrandController@index')->name('list');
+    Route::get('create', 'BrandController@viewCreate')->name('viewCreate');
+    Route::post('create', 'BrandController@create')->name('create');
 });
