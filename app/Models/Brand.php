@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class Brand extends Model
 {
     protected $table = 'brands';
 
-    public $fillale = [
+    public $fillable = [
         'name',
         'image'
     ];

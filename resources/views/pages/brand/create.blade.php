@@ -11,11 +11,17 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" id="name" name='name' placeholder="Enter name"/>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name='name' placeholder="Enter name"/>
+                    @error('name')
+                        <span class="error invalid-feedback" role="alert">{{ $errors->first('name') }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="file" name='image' accept="image/*"/>
+                    <input class="@error('name') is-invalid @enderror" type="file" name='image' accept="image/*"/>
+                    @error('image')
+                        <span class="error invalid-feedback" role="alert">{{ $errors->first('image') }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="card-footer">

@@ -30,6 +30,7 @@ class CategoryRepository
         if ($category) {
             foreach ($data as $key => $value) {
                 $category->{$key} = $value;
+                //dd($value);die;
             }
             $category->save();
         }

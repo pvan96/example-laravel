@@ -43,4 +43,6 @@ Route::group([
     Route::get('/', 'BrandController@index')->name('list');
     Route::get('create', 'BrandController@viewCreate')->name('viewCreate');
     Route::post('create', 'BrandController@create')->name('create');
+    Route::get('edit/{id}', 'BrandController@viewEdit')->name('viewEdit');
+    Route::post('edit/{id}', 'BrandController@update')->name('update');
 });

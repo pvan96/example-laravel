@@ -30,43 +30,34 @@ class BrandController extends Controller
     }
     public function create(BrandRequest $request)
     {
+        $data = $request->only(
+            [
+                'name',
+                'image'
+            ]
+        );
         if ($request->hasFile('image')) {
             $file = $request->image;
             $file->move('uploads', $file->getClientOriginalName());
+            $data['image'] = 'uploads/'.$file->getClientOriginalName();
+            //dd( $data['image']);die;
         }
+        $this->brandRepository->create($data);
+        return redirect()->route('brands.list');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function viewEdit(Request $request)
     {
-        //
+        $id = $request->id;
+        $brand = $this->brandRepository->getById($id);
+        return view('pages.brand.edit', compact('brand'));
     }
 
     /**

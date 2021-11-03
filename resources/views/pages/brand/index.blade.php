@@ -23,7 +23,7 @@
                         <td>{{$brand['name']}}</td>
                         <td>{{$brand['image']}}</td>
                         <td>
-                        <a href="index.php?controller=Brand&action=edit&id={{ $brand['id']}}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                        <a href="{{route('brands.viewEdit',$brand['id'])}}"><button class="btn btn-warning btn-sm">Edit</button></a>
                         <a href="index.php?controller=Brand&action=delete&id={{$brand['id']}}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger btn-sm">Delete</button></a> 
                         </td>
                     </tr>
